@@ -19,7 +19,8 @@
             android:padding="8dp"
             android:text="@string/back"
             android:textColor="@color/orange_dark"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,32 +44,32 @@
             style="@style/CategoryButton"
             android:layout_marginTop="24dp"
             app:backgroundTint="@color/cat_healthy"
-            app:cornerRadius="18dp" />
+            app:cornerRadius="20dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFast"
             style="@style/CategoryButton"
             app:backgroundTint="@color/cat_fast"
-            app:cornerRadius="18dp" />
+            app:cornerRadius="20dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSharing"
             style="@style/CategoryButton"
             app:backgroundTint="@color/cat_sharing"
-            app:cornerRadius="18dp" />
+            app:cornerRadius="20dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDessert"
             style="@style/CategoryButton"
             app:backgroundTint="@color/cat_dessert"
-            app:cornerRadius="18dp" />
+            app:cornerRadius="20dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAll"
             style="@style/CategoryButton"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             app:backgroundTint="@color/cat_all"
-            app:cornerRadius="18dp" />
+            app:cornerRadius="20dp" />
 
     </LinearLayout>
 </ScrollView>

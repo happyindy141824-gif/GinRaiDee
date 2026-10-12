@@ -19,7 +19,8 @@
             android:padding="8dp"
             android:text="@string/back"
             android:textColor="@color/orange_dark"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvCategory"
@@ -42,7 +43,7 @@
         <TextView
             android:id="@+id/tvSpinning"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="120dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_spinner"
             android:gravity="center"
@@ -58,7 +59,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_card"
             android:orientation="vertical"
-            android:padding="18dp">
+            android:padding="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -71,14 +72,14 @@
             <EditText
                 android:id="@+id/etMaxPrice"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="54dp"
                 android:layout_marginTop="12dp"
                 android:autofillHints="none"
                 android:background="@drawable/bg_input"
                 android:hint="@string/random_max_price"
                 android:inputType="number"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:textColor="@color/text_primary"
                 android:textColorHint="@color/text_secondary"
                 android:textSize="15sp" />
@@ -86,14 +87,14 @@
             <EditText
                 android:id="@+id/etMaxCalories"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="54dp"
                 android:layout_marginTop="10dp"
                 android:autofillHints="none"
                 android:background="@drawable/bg_input"
                 android:hint="@string/random_max_calories"
                 android:inputType="number"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:textColor="@color/text_primary"
                 android:textColorHint="@color/text_secondary"
                 android:textSize="15sp" />
@@ -102,7 +103,7 @@
                 android:id="@+id/cbVegetarian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/random_vegetarian"
                 android:textColor="@color/text_primary"
                 android:textSize="15sp" />
@@ -117,7 +118,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:backgroundTint="@color/orange_primary"
-            app:cornerRadius="18dp" />
+            app:cornerRadius="20dp" />
 
     </LinearLayout>
 </ScrollView>

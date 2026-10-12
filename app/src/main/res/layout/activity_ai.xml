@@ -14,7 +14,8 @@
         android:padding="8dp"
         android:text="@string/back"
         android:textColor="@color/orange_dark"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -76,13 +77,14 @@
                 android:background="@drawable/bg_chip"
                 android:clickable="true"
                 android:focusable="true"
-                android:paddingStart="12dp"
-                android:paddingTop="6dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="6dp"
+                android:paddingStart="14dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="14dp"
+                android:paddingBottom="8dp"
                 android:text="@string/ai_chip_spicy"
                 android:textColor="@color/orange_dark"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/chipHealthy"
@@ -92,13 +94,14 @@
                 android:background="@drawable/bg_chip"
                 android:clickable="true"
                 android:focusable="true"
-                android:paddingStart="12dp"
-                android:paddingTop="6dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="6dp"
+                android:paddingStart="14dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="14dp"
+                android:paddingBottom="8dp"
                 android:text="@string/ai_chip_healthy"
                 android:textColor="@color/cat_healthy"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/chipFast"
@@ -108,13 +111,14 @@
                 android:background="@drawable/bg_chip"
                 android:clickable="true"
                 android:focusable="true"
-                android:paddingStart="12dp"
-                android:paddingTop="6dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="6dp"
+                android:paddingStart="14dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="14dp"
+                android:paddingBottom="8dp"
                 android:text="@string/ai_chip_fast"
                 android:textColor="@color/cat_fast"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/chipDessert"
@@ -124,13 +128,14 @@
                 android:background="@drawable/bg_chip"
                 android:clickable="true"
                 android:focusable="true"
-                android:paddingStart="12dp"
-                android:paddingTop="6dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="6dp"
+                android:paddingStart="14dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="14dp"
+                android:paddingBottom="8dp"
                 android:text="@string/ai_chip_dessert"
                 android:textColor="@color/cat_dessert"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/chipSharing"
@@ -140,13 +145,14 @@
                 android:background="@drawable/bg_chip"
                 android:clickable="true"
                 android:focusable="true"
-                android:paddingStart="12dp"
-                android:paddingTop="6dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="6dp"
+                android:paddingStart="14dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="14dp"
+                android:paddingBottom="8dp"
                 android:text="@string/ai_chip_sharing"
                 android:textColor="@color/cat_sharing"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </HorizontalScrollView>
@@ -154,13 +160,13 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAsk"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="62dp"
         android:layout_marginTop="14dp"
         android:text="@string/ai_ask"
         android:textSize="18sp"
         android:textStyle="bold"
         app:backgroundTint="@color/orange_primary"
-        app:cornerRadius="18dp" />
+        app:cornerRadius="20dp" />
 
     <ProgressBar
         android:id="@+id/progressBar"

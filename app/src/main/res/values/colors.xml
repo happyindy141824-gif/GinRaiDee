@@ -2,15 +2,17 @@
 <resources>
     <color name="orange_primary">#FF7A00</color>
     <color name="orange_dark">#E85D04</color>
-    <color name="orange_light">#FFE8CC</color>
-    <color name="cream">#FFF8F0</color>
+    <color name="orange_light">#FFF0E0</color>
+    <color name="cream">#FFF9F2</color>
     <color name="white">#FFFFFF</color>
-    <color name="text_primary">#2B2118</color>
-    <color name="text_secondary">#7A6A5C</color>
 
-    <color name="cat_healthy">#4CAF50</color>
-    <color name="cat_fast">#FF9800</color>
-    <color name="cat_sharing">#E53935</color>
-    <color name="cat_dessert">#EC7FA9</color>
-    <color name="cat_all">#7B61FF</color>
+    <color name="text_primary">#1F1A14</color>
+    <color name="text_secondary">#6E6259</color>
+    <color name="border_color">#F0E3D3</color>
+
+    <color name="cat_healthy">#2E7D32</color>
+    <color name="cat_fast">#F57C00</color>
+    <color name="cat_sharing">#D32F2F</color>
+    <color name="cat_dessert">#D81B60</color>
+    <color name="cat_all">#5E35B1</color>
 </resources>
