@@ -84,7 +84,7 @@ public class ResultActivity extends AppCompatActivity {
             infoTextView.setText(R.string.random_no_match);
             ingredientsTextView.setText("ไม่ระบุวัตถุดิบ");
             recipeTextView.setText("ไม่ระบุวิธีทำ");
-            favoriteButton.setText(R.string.favorite_add);
+            favoriteButton.setText("🤍");
             return;
         }
         emojiTextView.setText(food.getEmoji());
@@ -108,9 +108,9 @@ public class ResultActivity extends AppCompatActivity {
 
     private void updateFavoriteButton(Food food) {
         if (food != null && food.isFavorite()) {
-            favoriteButton.setText(R.string.favorite_added);
+            favoriteButton.setText("❤️");
         } else {
-            favoriteButton.setText(R.string.favorite_add);
+            favoriteButton.setText("🤍");
         }
     }
 
