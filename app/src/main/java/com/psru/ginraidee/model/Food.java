@@ -22,6 +22,9 @@ public abstract class Food implements Serializable {
     private int calories;
     private String imageUrl;
     private String description;
+    private boolean favorite;
+    private String ingredients;
+    private String recipe;
 
     protected Food(String foodName, double price, int calories, String imageUrl, String description) {
         this.foodName = foodName;
@@ -32,6 +35,36 @@ public abstract class Food implements Serializable {
     }
 
     // ---------- Encapsulation: getter / setter ----------
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
+    public String getIngredients() {
+        return ingredients != null && !ingredients.trim().isEmpty() ? ingredients : "ไม่ระบุวัตถุดิบ";
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public String getRecipe() {
+        return recipe != null && !recipe.trim().isEmpty() ? recipe : "ไม่ระบุวิธีทำ";
+    }
+
+    public void setRecipe(String recipe) {
+        this.recipe = recipe;
+    }
+
+    public Food withDetails(String ingredients, String recipe) {
+        this.ingredients = ingredients;
+        this.recipe = recipe;
+        return this;
+    }
 
     public String getFoodName() {
         return foodName;

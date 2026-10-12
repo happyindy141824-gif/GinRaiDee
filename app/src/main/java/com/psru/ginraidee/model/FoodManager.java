@@ -58,6 +58,37 @@ public class FoodManager {
     }
 
     // ------------------------------------------------------------------
+    // รายการโปรด (Favorites)
+    // ------------------------------------------------------------------
+
+    /** สลับสถานะรายการโปรด */
+    public boolean toggleFavorite(Food food) {
+        if (food == null) {
+            return false;
+        }
+        boolean newState = !food.isFavorite();
+        food.setFavorite(newState);
+        for (Food item : foodList) {
+            if (item.getFoodName().equalsIgnoreCase(food.getFoodName())) {
+                item.setFavorite(newState);
+                break;
+            }
+        }
+        return newState;
+    }
+
+    /** ดึงรายการอาหารโปรดทั้งหมด */
+    public List<Food> getFavoriteFoods() {
+        List<Food> favorites = new ArrayList<>();
+        for (Food food : foodList) {
+            if (food.isFavorite()) {
+                favorites.add(food);
+            }
+        }
+        return favorites;
+    }
+
+    // ------------------------------------------------------------------
     // สุ่มเมนู
     // ------------------------------------------------------------------
 

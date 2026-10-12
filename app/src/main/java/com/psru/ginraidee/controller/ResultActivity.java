@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.button.MaterialButton;
 import com.psru.ginraidee.R;
 import com.psru.ginraidee.model.Food;
 import com.psru.ginraidee.model.FoodCategory;
@@ -34,9 +35,13 @@ public class ResultActivity extends AppCompatActivity {
     private TextView foodNameTextView;
     private TextView tagTextView;
     private TextView infoTextView;
+    private MaterialButton favoriteButton;
+    private TextView ingredientsTextView;
+    private TextView recipeTextView;
 
     private FoodCategory category;
     private FoodFilter filter;
+    private Food currentFood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,9 @@ public class ResultActivity extends AppCompatActivity {
         foodNameTextView = findViewById(R.id.tvFoodName);
         tagTextView = findViewById(R.id.tvTag);
         infoTextView = findViewById(R.id.tvInfo);
+        favoriteButton = findViewById(R.id.btnFavorite);
+        ingredientsTextView = findViewById(R.id.tvIngredients);
+        recipeTextView = findViewById(R.id.tvRecipe);
 
         category = FoodCategory.fromName(getIntent().getStringExtra(EXTRA_CATEGORY));
         filter = readFilter();
@@ -58,6 +66,8 @@ public class ResultActivity extends AppCompatActivity {
         }
         showFood(food);
 
+        favoriteButton.setOnClickListener(v -> toggleFavorite());
+
         Button spinAgainButton = findViewById(R.id.btnSpinAgain);
         spinAgainButton.setOnClickListener(v -> spinAgain());
 
@@ -66,17 +76,42 @@ public class ResultActivity extends AppCompatActivity {
 
     /** เอา object Food มาแสดงบนหน้าจอ */
     private void showFood(Food food) {
+        this.currentFood = food;
         if (food == null) {
             emojiTextView.setText("😅");
             foodNameTextView.setText(R.string.result_empty_title);
             tagTextView.setText("");
             infoTextView.setText(R.string.random_no_match);
+            ingredientsTextView.setText("ไม่ระบุวัตถุดิบ");
+            recipeTextView.setText("ไม่ระบุวิธีทำ");
+            favoriteButton.setText(R.string.favorite_add);
             return;
         }
         emojiTextView.setText(food.getEmoji());
         foodNameTextView.setText(food.getFoodName());
         tagTextView.setText(food.getTag());
         infoTextView.setText(food.getInfo());
+        ingredientsTextView.setText(food.getIngredients());
+        recipeTextView.setText(food.getRecipe());
+        updateFavoriteButton(food);
+    }
+
+    private void toggleFavorite() {
+        if (currentFood == null) {
+            return;
+        }
+        boolean isFav = foodManager.toggleFavorite(currentFood);
+        updateFavoriteButton(currentFood);
+        String message = isFav ? "บันทึกเข้าเมนูโปรดแล้ว ❤️" : "ยกเลิกเมนูโปรดแล้ว 🤍";
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void updateFavoriteButton(Food food) {
+        if (food != null && food.isFavorite()) {
+            favoriteButton.setText(R.string.favorite_added);
+        } else {
+            favoriteButton.setText(R.string.favorite_add);
+        }
     }
 
     /** ปุ่ม "หมุนใหม่" — สั่ง Model สุ่มใหม่ในหมวดและเงื่อนไขเดิม */

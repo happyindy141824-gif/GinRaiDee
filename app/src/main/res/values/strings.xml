@@ -30,6 +30,10 @@
     <string name="result_empty_title">ยังไม่มีผลลัพธ์</string>
     <string name="result_spin_again">🔄  หมุนใหม่</string>
     <string name="result_home">🏠  กลับหน้าแรก</string>
+    <string name="favorite_add">🤍  เพิ่มเป็นเมนูโปรด</string>
+    <string name="favorite_added">❤️  รายการโปรด</string>
+    <string name="ingredients_title">🛒  วัตถุดิบหลัก</string>
+    <string name="recipe_title">🍳  วิธีทำแบบย่อ</string>
 
     <!-- หน้า AI -->
     <string name="ai_title">ให้ AI ช่วยเลือก</string>
