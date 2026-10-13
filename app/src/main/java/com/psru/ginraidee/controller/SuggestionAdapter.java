@@ -1,5 +1,6 @@
 package com.psru.ginraidee.controller;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.psru.ginraidee.R;
 import com.psru.ginraidee.model.AiSuggestion;
 import com.psru.ginraidee.model.Food;
+import com.psru.ginraidee.model.FoodManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,6 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Su
 
     @NonNull
     @Override
-    /** หลังจาก onCreateViewHolder สร้างโครงสร้างกล่องเปล่าเสร็จแล้ว ระบบจะเรียกเมธอด onBindViewHolder ต่อทันที เพื่อทำหน้าที่ เอาข้อมูลจริง มาใส่ลงไปในกล่อง */
     public SuggestionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_food, parent, false);
@@ -59,7 +60,6 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Su
         private final TextView nameTextView;
         private final TextView detailTextView;
 
-        /** มีหน้าที่เอาข้อมูลอาหารมาหยิบใส่กล่องนั้นให้ผู้ใช้มองเห็นบนหน้าจอ */
         SuggestionViewHolder(@NonNull View itemView) {
             super(itemView);
             emojiTextView = itemView.findViewById(R.id.tvItemEmoji);
@@ -74,13 +74,25 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Su
             StringBuilder detail = new StringBuilder(suggestion.getReason());
             Food matched = suggestion.getMatchedFood();
             if (matched != null) {
-                // จับคู่กับคลังเมนู offline ได้ เลยเอาข้อมูลจริงมาต่อท้าย
                 detail.append("\n")
                         .append(matched.getCalories())
                         .append(" แคลอรี่ • ")
                         .append(matched.getTag());
             }
             detailTextView.setText(detail.toString());
+
+            itemView.setOnClickListener(v -> {
+                Food foodToPass = suggestion.getMatchedFood();
+                if (foodToPass == null) {
+                    // Try finding by name in FoodManager
+                    foodToPass = FoodManager.getInstance().findByName(suggestion.getFoodName());
+                }
+                if (foodToPass != null) {
+                    Intent intent = new Intent(v.getContext(), RecipeActivity.class);
+                    intent.putExtra(RecipeActivity.EXTRA_FOOD, foodToPass);
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }
