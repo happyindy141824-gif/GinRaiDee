@@ -1,4 +1,4 @@
-package veiw;
+package com.psru.ginraidee.veiw;
 
 import android.os.Bundle;
 

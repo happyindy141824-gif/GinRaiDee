@@ -13,6 +13,7 @@ import com.psru.ginraidee.R;
 import com.psru.ginraidee.model.AiSuggestion;
 import com.psru.ginraidee.model.Food;
 import com.psru.ginraidee.model.FoodManager;
+import com.psru.ginraidee.model.HealthyFood;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,15 @@ import java.util.List;
 public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.SuggestionViewHolder> {
 
     private final List<AiSuggestion> suggestions = new ArrayList<>();
+    private OnItemClickListener itemClickListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(Food food);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.itemClickListener = listener;
+    }
 
     /** แทนที่ข้อมูลทั้งชุดแล้วสั่งวาดใหม่ */
     public void submit(List<AiSuggestion> newSuggestions) {
@@ -46,7 +56,7 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Su
 
     @Override
     public void onBindViewHolder(@NonNull SuggestionViewHolder holder, int position) {
-        holder.bind(suggestions.get(position));
+        holder.bind(suggestions.get(position), itemClickListener);
     }
 
     @Override
@@ -67,7 +77,7 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Su
             detailTextView = itemView.findViewById(R.id.tvItemDetail);
         }
 
-        void bind(AiSuggestion suggestion) {
+        void bind(AiSuggestion suggestion, OnItemClickListener listener) {
             emojiTextView.setText(suggestion.getEmoji());
             nameTextView.setText(suggestion.getFoodName());
 
@@ -84,13 +94,30 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Su
             itemView.setOnClickListener(v -> {
                 Food foodToPass = suggestion.getMatchedFood();
                 if (foodToPass == null) {
-                    // Try finding by name in FoodManager
                     foodToPass = FoodManager.getInstance().findByName(suggestion.getFoodName());
                 }
+                if (foodToPass == null && suggestion.getFoodName() != null) {
+                    foodToPass = new HealthyFood(
+                            suggestion.getFoodName(),
+                            70.0,
+                            350,
+                            "",
+                            suggestion.getReason(),
+                            80,
+                            false
+                    ).withDetails(
+                            "วัตถุดิบแนะนำจาก AI ออนไลน์",
+                            "1. เตรียมวัตถุดิบตามความเหมาะสมของเมนู\n2. ปรุงรสตามสูตร AI และความชอบ\n3. จัดเสิร์ฟความอร่อยร้อน ๆ"
+                    );
+                }
                 if (foodToPass != null) {
-                    Intent intent = new Intent(v.getContext(), RecipeActivity.class);
-                    intent.putExtra(RecipeActivity.EXTRA_FOOD, foodToPass);
-                    v.getContext().startActivity(intent);
+                    if (listener != null) {
+                        listener.onItemClick(foodToPass);
+                    } else {
+                        Intent intent = new Intent(v.getContext(), RecipeActivity.class);
+                        intent.putExtra(RecipeActivity.EXTRA_FOOD, foodToPass);
+                        v.getContext().startActivity(intent);
+                    }
                 }
             });
         }

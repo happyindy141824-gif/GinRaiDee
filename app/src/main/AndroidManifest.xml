@@ -62,15 +62,19 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="veiw.SettingsActivity"
+            android:name="com.psru.ginraidee.veiw.SettingsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="veiw.HowToActivity"
+            android:name="com.psru.ginraidee.veiw.HowToActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="veiw.AboutActivity"
+            android:name="com.psru.ginraidee.veiw.AboutActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".controller.RestaurantLocationActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

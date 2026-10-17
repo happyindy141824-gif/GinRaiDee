@@ -1,6 +1,7 @@
 package com.psru.ginraidee.controller;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -70,6 +71,26 @@ public class ResultActivity extends AppCompatActivity {
 
         Button spinAgainButton = findViewById(R.id.btnSpinAgain);
         spinAgainButton.setOnClickListener(v -> spinAgain());
+
+        findViewById(R.id.btnViewLocation).setOnClickListener(v -> {
+            if (currentFood != null) {
+                String query = "ร้าน " + currentFood.getFoodName() + " พิษณุโลก";
+                try {
+                    Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode(query));
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");
+                    if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(mapIntent);
+                    } else {
+                        Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                                Uri.parse("https://www.google.com/maps/search/?api=1&query=" + Uri.encode(query)));
+                        startActivity(webIntent);
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(this, "เปิดแผนที่ไม่ได้: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         findViewById(R.id.btnHome).setOnClickListener(v -> goHome());
     }

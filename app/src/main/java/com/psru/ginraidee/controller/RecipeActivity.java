@@ -1,5 +1,7 @@
 package com.psru.ginraidee.controller;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,6 +60,26 @@ public class RecipeActivity extends AppCompatActivity {
         }
 
         btnToggleFavorite.setOnClickListener(v -> toggleFavorite());
+
+        findViewById(R.id.btnViewLocation).setOnClickListener(v -> {
+            if (food != null) {
+                String query = "ร้าน " + food.getFoodName() + " พิษณุโลก";
+                try {
+                    Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode(query));
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");
+                    if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(mapIntent);
+                    } else {
+                        Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                                Uri.parse("https://www.google.com/maps/search/?api=1&query=" + Uri.encode(query)));
+                        startActivity(webIntent);
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(this, "เปิดแผนที่ไม่ได้: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         BottomNavHelper.setup(this, R.id.navHome);
     }

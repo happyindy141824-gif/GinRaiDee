@@ -1,5 +1,6 @@
 package com.psru.ginraidee.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,10 +18,15 @@ import java.util.List;
 
 public class MenuCatalogActivity extends AppCompatActivity {
 
+    public static final String EXTRA_SELECT_MODE = "extra_select_mode";
+    public static final String EXTRA_SELECTED_FOOD = "extra_selected_food";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_catalog);
+
+        boolean isSelectMode = getIntent().getBooleanExtra(EXTRA_SELECT_MODE, false);
 
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
@@ -28,6 +34,15 @@ public class MenuCatalogActivity extends AppCompatActivity {
         rvMenuCatalog.setLayoutManager(new LinearLayoutManager(this));
         SuggestionAdapter adapter = new SuggestionAdapter();
         rvMenuCatalog.setAdapter(adapter);
+
+        if (isSelectMode) {
+            adapter.setOnItemClickListener(food -> {
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra(EXTRA_SELECTED_FOOD, food);
+                setResult(RESULT_OK, resultIntent);
+                finish();
+            });
+        }
 
         List<Food> allFoods = FoodManager.getInstance().getFoodList();
         List<AiSuggestion> list = new ArrayList<>();
